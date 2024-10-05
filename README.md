@@ -13,6 +13,8 @@
   "width": 800,
   "height": 600,
   "transform": [
+    {"filter": {"field": "id", "lt": 6210}},
+    {"filter": {"field": "id", "gt": 6152}},
     {"fold": ["win", "draw", "loss"], "as": ["Résultat", "Probabilité"]},
     {"calculate": "indexof(['win', 'draw', 'loss'], datum.Résultat)", "as": "order"}
   ],
