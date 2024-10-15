@@ -43,3 +43,79 @@ Show evolution of win/draw/loss evaluation over time, can be filtered in between
   }
 }
 ```
+
+## Active players over time
+
+[Link](https://vega.github.io/editor/#/url/vega-lite/N4IgJAzgxgFgpgWwIYgFwhgF0wBwqgegIDc4BzJAOjIEtMYBXAI0poHsDp5kTykBaADZ04JAKyUAVhDYA7EABoQAEySYUqUAwBOgtBmx5CBbUgDu1OoyYMIcbVDmY4szJUcICAYQDiASX4AMQAlAihtNjNlflg4CAh+VXUTOAAzCAJ4JGUM5BpZAgAmAAZCgBZigE5+YjZnCHcIYhAAXyViR1koNTQAbVAzGmV6NAAOYuKleBoyLDQANgmlHCRTBAg+0FkkBDh9STYdRRA7QTgoTDRQTABPHD30HDZ8y6UXR2V8sg3UXpAADxAAF0Wi0gUpkNoANb6JirY7vNifWRkK4AtGYGi7ACqsjo+iSeyUqRocEEyn0+Qg6lcx1u930zgQT1MeiUmMwZ30AClDtpjnDZMoAApsCB0djyVDFNogG5opBkMjaPjOAk0an5C7HElkimPQRIG72AD6eDgDGUbDpdweIAAjgwkK46GoaKQ6XQuegAHJsBBMFUAAmUcCDBwYFu0G1ljkEbH5mhAiuVqrtn01XVeIF15P0OENxu0ZrslutSjOZBc+uuXrtfoDwdD4cOUZjoLaAyGI1Q40mGDgMzmqEW-cwplkEFSCYQmxzNEEzkToBWa32fNaYIhqxh6Dh-LeXSRXzRgKTmJxeMu6BgfI2xNJefQVJp2fpdqZLKQbJAHO9IAACSjIkQEFEUxQlOQ0H7JB-g1NFiG-SMfl6SYAEYFEKBQAGYFDKBQxAUeYFAAdgUUYFEqBQ0PQjC0KwtDcLQ-C0MItDiLQsi0IotCqJKTCMMKLDCmwkFZXlJMUxVCg1XQDNMSzHVH31EACyNU1zTLG0GXQR1nQ5N0PXZOt9AbQMw2bCM21aJQ4wTBUlWktR0w1BTtQfPV80LDTSytY5K2rDETN9f1zJDMMrJ0GMlGgb8HlALhEDtFUck3UEQSAA)
+
+```json
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/CGI-FR/crowd-chess-data/refs/heads/main/202409-votes.csv"
+  },
+  "vconcat": [
+  {
+    "width": 800,
+    "height": 600,
+    "params": [{"name": "jour", "select": {"type": "point", "encodings": ["x"]}}],
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "timeUnit": "date",
+        "field": "instant",
+        "type": "temporal",
+        "title": "Jour",
+        "bandPosition": 0
+      },
+      "y": {
+        "aggregate": "distinct",
+        "field": "player_pseudo",
+        "type": "quantitative",
+        "title": "Nombre de joueurs"
+      },
+      "color": {
+        "aggregate": "distinct",
+        "field": "player_pseudo",
+        "legend": {
+          "title": "Nombre de joueurs"
+        }
+      }
+    }
+  },
+  {
+    "width": 800,
+    "height": 600,
+    "transform": [{"filter": {"param": "jour"}}],
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "timeUnit": "hours",
+        "field": "instant",
+        "type": "temporal",
+        "title": "Heure",
+        "bandPosition": 0,
+        "axis": {
+          "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        }
+      },
+      "y": {
+        "aggregate": "distinct",
+        "field": "player_pseudo",
+        "type": "quantitative",
+        "title": "Nombre de joueurs"
+      },
+      "color": {
+        "aggregate": "distinct",
+        "field": "player_pseudo",
+        "legend": {
+          "title": "Nombre de joueurs"
+        },
+        "scale": {
+          "scheme": "reds"
+        }
+      }
+    }
+  }]
+}
+```
