@@ -4,6 +4,16 @@
 
 Show evolution of win/draw/loss evaluation over time, can be filtered in between turns to show a single chessgame.
 
+### DevFest 2024 - Day 1
+
+![devfest-2024-10-17-partie](https://github.com/user-attachments/assets/2a681329-532e-423b-bc25-6fb81ffed3bb)
+
+### DevFest 2024 - Day 2
+
+![devfest-2024-10-18-partie](https://github.com/user-attachments/assets/2f05916d-095c-47a7-9e07-19d2e0168623)
+
+### Source code
+
 [Link](https://vega.github.io/editor/#/url/vega-lite/N4IgJAzgxgFgpgWwIYgFwhgF0wBwqgegIDc4BzJAOjIEtMYBXAI0poHsDp5kTykBaADZ04JAKyUAVhDYA7EABoQAEySYUqUAwBOgtBmx5CBbUgDu1OoyYMIcbVDmY4szJUcICAYQDiASX4AMQAlAihtNjNlflg4CAh+VXUTOAAzCAJ4JGUM5BpZAgAmAAZCgBZigE5CgHZ+TB1ZCHcIYhAAXyUzGmV6NAAOYuKleBoyLDQANiGlTFMm1LZtBDQAbVBUmkFnbTQNmjhBZX0exRBtqcKARmL2zv3t+z2QTcPj9FOlMkwpq7FCu4KDZsI5rEDdeRKZSmMxnQRseIgAC6SiQEDBwQAlxAGNs1GcAAoRJhIJhbOiY5H3EBQJCCKC4tRwE6yZRwAAebFSAApVgByCF8hQAAj50PMQtF8PifJRwqSDAQlCxOLxmAAlGc0folmzdu0USBkNoANb6JDaOAoJQuRzKfJkZ7s56vUHoFzKAD6XM9DW0kJAmAAnjhmehnAgcEs6WdMHRBGGQAAJOA6ZmdEBBl0HN0gIlsElk4SYSmzEOJgCODCQrjoahopDOEHUUDN6FkS2QwgAXszZvHE-nC+SS8KGQhcZi4MLuQBSTWo9k0dGaF6d-HoWcdDOOeG7Veu94gFW49Q-Muh-QdhD5GP9zAJ-QntVN2mP1fKNh5eSoVbg-JnOKsJKNK6KGvMZBhn+ADEqRiHByhQGc0GDKhxTIUMmHoUigIgLqTwHjmR74bsF6Jrqt56Hc7RAA)
 
 ```json
