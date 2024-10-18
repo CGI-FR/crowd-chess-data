@@ -2,7 +2,7 @@
 
 ## Win/Draw/Loss evaluation
 
-Show evolution of win/draw/loss evaluation over time, can be filtered in between turns to show a single chessgame.
+Show evolution of win/draw/loss evaluation over time (white point of view), can be filtered in between turns to show a single chessgame.
 
 ### DevFest 2024 - Day 1
 
