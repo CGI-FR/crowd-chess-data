@@ -62,7 +62,7 @@ Show evolution of win/draw/loss evaluation over time (white point of view), can 
 
 ### DevFest 2024 - Day 2
 
-![devfest-2024-10-18-joueurs](https://github.com/user-attachments/assets/542a3b7b-4875-474f-9160-9428be6979ac)
+![devfest-2024-10-18-joueurs](https://github.com/user-attachments/assets/8deec2b1-6c8c-4ede-8511-2093ef9a0d0e)
 
 ### Source code
 
