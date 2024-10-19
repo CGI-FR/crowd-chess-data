@@ -141,3 +141,55 @@ Show evolution of win/draw/loss evaluation over time (white point of view), can 
   }]
 }
 ```
+
+## Average accuracy by players
+
+
+### DevFest 2024 - Day 2
+
+![devfest-2024-10-18-accuracy](https://github.com/user-attachments/assets/049156ee-0817-4907-afa4-98f44264903f)
+
+### Source code
+
+```json
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/CGI-FR/crowd-chess-data/refs/heads/main/20241018-votes-effective.csv"
+  },
+  "width": 800,
+  "height": 600,
+  "transform": [
+    {
+      "groupby": ["player_pseudo"],
+      "aggregate": [
+        {"op": "count", "as": "nb_moves"},
+        {"op": "mean", "field": "accuracy", "as": "avg_accuracy"}
+      ]
+    },
+    {
+      "filter": "datum.nb_moves >= 5"
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "avg_accuracy",
+      "type": "quantitative",
+      "title": "Précision moyenne"
+    },
+    "y": {
+      "field": "player_pseudo",
+      "type": "nominal",
+      "sort": "-x",
+      "title": "Joueur"
+    }
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 10,
+      "titleFontSize": 14
+    }
+  }
+}
+```
