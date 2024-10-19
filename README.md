@@ -148,7 +148,7 @@ Compute average accuracy of players with at least 5 active votes (an active vote
 
 ### DevFest 2024 - Day 2
 
-![devfest-2024-10-18-accuracy](https://github.com/user-attachments/assets/049156ee-0817-4907-afa4-98f44264903f)
+![devfest-2024-10-18-accuracy-filtered](https://github.com/user-attachments/assets/940a82c6-52b0-482c-9653-9b728f542f41)
 
 ### Source code
 
@@ -162,28 +162,41 @@ Compute average accuracy of players with at least 5 active votes (an active vote
   "height": 600,
   "transform": [
     {
+      "filter": "datum.turn_id < 10552"
+    },
+    {
       "groupby": ["player_pseudo"],
       "aggregate": [
         {"op": "count", "as": "nb_moves"},
-        {"op": "mean", "field": "accuracy", "as": "avg_accuracy"}
+        {"op": "mean", "field": "accuracy", "as": "avg_accuracy"},
+        {"op": "mean", "field": "points", "as": "avg_points"}
       ]
     },
     {
       "filter": "datum.nb_moves >= 5"
     }
   ],
-  "mark": "bar",
+  "mark": {
+    "type": "bar",
+    "color": "#b41f1f"
+  },
   "encoding": {
     "x": {
       "field": "avg_accuracy",
       "type": "quantitative",
-      "title": "Précision moyenne"
+      "title": "Précision moyenne par tours"
     },
     "y": {
       "field": "player_pseudo",
       "type": "nominal",
       "sort": "-x",
       "title": "Joueur"
+    },
+    "color": {
+      "field": "nb_moves", 
+      "type": "quantitative",
+      "scale": {"scheme": "blues"},
+      "title": "Nombre de tours joués"
     }
   },
   "config": {
