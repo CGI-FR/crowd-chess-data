@@ -142,7 +142,7 @@ Show evolution of win/draw/loss evaluation over time (white point of view), can 
 }
 ```
 
-## Average accuracy by players
+## Average player accuracy by turns
 
 Compute average accuracy of players with at least 5 active votes (an active vote is the last vote submitted on each turn).
 
