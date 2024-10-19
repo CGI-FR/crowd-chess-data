@@ -194,3 +194,59 @@ Compute average accuracy of players with at least 5 active votes (an active vote
   }
 }
 ```
+
+## Average points by turns
+
+### DevFest 2024 - Day 2
+
+![devfest-2024-10-18-points](https://github.com/user-attachments/assets/56850616-0be6-48aa-88b4-35824f1251a4)
+
+### Source code
+
+```json
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/CGI-FR/crowd-chess-data/refs/heads/main/20241018-votes-effective.csv"
+  },
+  "width": 800,
+  "height": 600,
+  "transform": [
+    {
+      "groupby": ["player_pseudo"],
+      "aggregate": [
+        {"op": "count", "as": "nb_moves"},
+        {"op": "mean", "field": "accuracy", "as": "avg_accuracy"},
+        {"op": "mean", "field": "points", "as": "avg_points"}
+      ]
+    },
+    {
+      "filter": "datum.nb_moves >= 5"
+    }
+  ],
+  "mark": {
+    "type": "bar",
+    "color": "#b41f1f"
+  },
+  "encoding": {
+    "x": {
+      "field": "avg_points",
+      "type": "quantitative",
+      "title": "Quantité moyenne de points engrangés par tours"
+    },
+    "y": {
+      "field": "player_pseudo",
+      "type": "nominal",
+      "sort": "-x",
+      "title": "Joueur"
+    }
+  },
+  "config": {
+    "axis": {
+      "labelFontSize": 10,
+      "titleFontSize": 14
+    }
+  }
+}
+```
+
