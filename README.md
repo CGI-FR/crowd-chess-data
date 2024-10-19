@@ -199,7 +199,7 @@ Compute average accuracy of players with at least 5 active votes (an active vote
 
 ### DevFest 2024 - Day 2
 
-![devfest-2024-10-18-points](https://github.com/user-attachments/assets/56850616-0be6-48aa-88b4-35824f1251a4)
+![devfest-2024-10-18-points-filtered](https://github.com/user-attachments/assets/cca20e31-21b9-4ca7-89dd-2c000c28adfb)
 
 ### Source code
 
@@ -212,6 +212,9 @@ Compute average accuracy of players with at least 5 active votes (an active vote
   "width": 800,
   "height": 600,
   "transform": [
+    {
+      "filter": "datum.turn_id < 10552"
+    },
     {
       "groupby": ["player_pseudo"],
       "aggregate": [
@@ -239,6 +242,12 @@ Compute average accuracy of players with at least 5 active votes (an active vote
       "type": "nominal",
       "sort": "-x",
       "title": "Joueur"
+    },
+    "color": {
+      "field": "nb_moves", 
+      "type": "quantitative",
+      "scale": {"scheme": "reds"},
+      "title": "Nombre de tours joués"
     }
   },
   "config": {
