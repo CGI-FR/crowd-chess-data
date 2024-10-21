@@ -299,7 +299,7 @@ Show the average rank of the effective vote counted for each player (e.g. your r
 
 ### DevFest 2024 - Day 1
 
-![devfest-2024-10-17-rank-filtered](https://github.com/user-attachments/assets/a8471bf5-f75f-472e-9860-659f85369f45)
+![devfest-2024-10-17-rank-filtered](https://github.com/user-attachments/assets/601e478c-416a-47c9-b531-2d8e1b4756e1)
 
 ### DevFest 2024 - Day 2
 
