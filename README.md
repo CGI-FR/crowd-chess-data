@@ -293,3 +293,72 @@ Compute average accuracy of players with at least 5 active votes (an active vote
 }
 ```
 
+## Average rank of effective vote
+
+Show the average rank of the effective vote counted for each player (e.g. your rank if 5 if 4 players played the same move as you before you). Lower value for average rank is better since you get more points.
+
+### DevFest 2024 - Day 1
+
+![devfest-2024-10-17-rank-filtered](https://github.com/user-attachments/assets/a8471bf5-f75f-472e-9860-659f85369f45)
+
+### DevFest 2024 - Day 2
+
+![devfest-2024-10-18-rank-filtered](https://github.com/user-attachments/assets/1a9d2910-492a-4571-87c5-f528efbf09f8)
+
+### Source code
+
+```json
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/CGI-FR/crowd-chess-data/refs/heads/main/20241018-votes.csv"
+  },
+  "width": 800,
+  "height": 600,
+  "transform": [
+    {
+      "window": [{"op": "row_number", "as": "row_number"}],
+      "groupby": ["turn_id", "player_pseudo"],
+      "sort": [{"field": "instant", "order": "descending"}]
+    },
+    {"filter": "datum.row_number == 1"},
+    {"filter": "datum.turn_id <= 10551"},
+    {
+      "window": [{"op": "rank", "as": "rank"}],
+      "groupby": ["turn_id", "move"],
+      "sort": [{"field": "instant", "order": "ascending"}]
+    },
+    {
+      "groupby": ["player_pseudo"],
+      "aggregate": [
+        {"op": "count", "as": "nb_moves"},
+        {"op": "mean", "field": "accuracy", "as": "avg_accuracy"},
+        {"op": "mean", "field": "points", "as": "avg_points"},
+        {"op": "mean", "field": "rank", "as": "med_rank"}
+      ]
+    },
+    {"filter": "datum.nb_moves >= 5"}
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "med_rank",
+      "type": "quantitative",
+      "title": "Rang médian"
+    },
+    "y": {
+      "field": "player_pseudo",
+      "type": "nominal",
+      "sort": "x",
+      "title": "Joueur"
+    },
+    "color": {
+      "field": "nb_moves",
+      "type": "quantitative",
+      "scale": {"scheme": "greens"},
+      "title": "Nombre de tours joués"
+    }
+  },
+  "config": {"axis": {"labelFontSize": 10, "titleFontSize": 14}}
+}
+```
