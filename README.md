@@ -146,24 +146,34 @@ Show evolution of win/draw/loss evaluation over time (white point of view), can 
 
 Compute average accuracy of players with at least 5 active votes (an active vote is the last vote submitted on each turn).
 
+### DevFest 2024 - Day 1
+
+![devfest-2024-10-17-accuracy-filtered](https://github.com/user-attachments/assets/8b17941e-f9d3-4996-af1b-4f274fc5a82e)
+
 ### DevFest 2024 - Day 2
 
 ![devfest-2024-10-18-accuracy-filtered](https://github.com/user-attachments/assets/940a82c6-52b0-482c-9653-9b728f542f41)
 
 ### Source code
 
+[Link](https://vega.github.io/editor/#/url/vega-lite/N4IgJAzgxgFgpgWwIYgFwhgF0wBwqgegIDc4BzJAOjIEtMYBXAI0poHsDp5kTykBaADZ04JAKyUAVhDYA7EABoQAEySYUqUAwBOgtBmx5CBbUgDu1OoyYMIcbVDmY4szJUcICAYQDiASX4AMQAlAihtNjNlflg4CAh+VXUTOAAzCAJ4JGUM5BpZAgAmAAZCgBYARmKKgHZ+YjZnCHcIYhAAXyUzGmV6NAAOYuKleBoyLDQANiGlTFNZCFS2bQQ0AG1QbtllSPXQNhx9CLMAfVkGBCZ7RRAkCCPIs4ur7Q6AXSUyCIYcJgBPdYgTA6WQnHo3HCCJB-ewnPBwBg7EAfEAybSYPYgVI0OCCZT6fIQdSuG7LZTXdDk6AuZT5MjvTqgbGCZyvSlqC6UY5PS72AAEAF4BXyKh0FEyaCyKSoOQhKMDtKCenyADzCqoAZjKAE4xaAvmwfv9AZDobD4Yi2MilEgyF8+M5MQd9I4GCSbfd0LImCcEGxSPdGSBnegEHAkPIlNjcfj0EgoFAdPGAR79EhiGQTvHE6YoACgyGQGGIzdo3j9Dg2PlMPdU3GM3Cq65A28g8zWfokpzvb7-XE+QA+YVid5KZDaADWaFAmD+ODg+iYSFeSkcgmW+gAxExKqkKqkxSAXI5abJ6ZoQAAPadYnHl+uZ7NJvM3Wfz-QARwYEcwdDUNFIV86EEBd0AABW0ABLqAaAgdhZD5P0YVkWQ4D5HBlz5TBDW0QMlABC8y1jEBTRhbQ4TsS1XznUCQFkNgEHyJA9CUNEMXQfhr1mYDaIAKUNBFXk6EA1w3Qi72Ins-QDaj33QL8fz-X9ANYqBmNA0AuEQWimEEBg4kPX9MBA-QADkGKYbQ0PJLCcIgPlJENSDA2ExxZGxc9QCQS9YJvKErkEQInAAZRoAAvUCqm44y4CC1xQoitAKjKdpUqAA)
+
 ```json
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {
-    "url": "https://raw.githubusercontent.com/CGI-FR/crowd-chess-data/refs/heads/main/20241018-votes-effective.csv"
+    "url": "https://raw.githubusercontent.com/CGI-FR/crowd-chess-data/refs/heads/main/20241017-votes.csv"
   },
   "width": 800,
   "height": 600,
   "transform": [
     {
-      "filter": "datum.turn_id < 10552"
+      "window": [{"op": "row_number", "as": "row_number"}],
+      "groupby": ["turn_id", "player_pseudo"],
+      "sort": [{"field": "instant", "order": "descending"}]
     },
+    {"filter": "datum.row_number == 1"},
+    {"filter": "datum.turn_id <= 10349"},
     {
       "groupby": ["player_pseudo"],
       "aggregate": [
@@ -172,14 +182,9 @@ Compute average accuracy of players with at least 5 active votes (an active vote
         {"op": "mean", "field": "points", "as": "avg_points"}
       ]
     },
-    {
-      "filter": "datum.nb_moves >= 5"
-    }
+    {"filter": "datum.nb_moves >= 5"}
   ],
-  "mark": {
-    "type": "bar",
-    "color": "#b41f1f"
-  },
+  "mark": {"type": "bar", "color": "#b41f1f"},
   "encoding": {
     "x": {
       "field": "avg_accuracy",
@@ -193,22 +198,21 @@ Compute average accuracy of players with at least 5 active votes (an active vote
       "title": "Joueur"
     },
     "color": {
-      "field": "nb_moves", 
+      "field": "nb_moves",
       "type": "quantitative",
       "scale": {"scheme": "blues"},
       "title": "Nombre de tours joués"
     }
   },
-  "config": {
-    "axis": {
-      "labelFontSize": 10,
-      "titleFontSize": 14
-    }
-  }
+  "config": {"axis": {"labelFontSize": 10, "titleFontSize": 14}}
 }
 ```
 
 ## Average points by turns
+
+### DevFest 2024 - Day 1
+
+![devfest-2024-10-17-points-filtered](https://github.com/user-attachments/assets/9beb5f1c-9eec-4427-a1f6-971294e3b74d)
 
 ### DevFest 2024 - Day 2
 
