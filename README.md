@@ -216,15 +216,32 @@ Compute average accuracy of players with at least 5 active votes (an active vote
 
 ### Source code
 
+[Link](https://vega.github.io/editor/#/url/vega-lite/N4IgJAzgxgFgpgWwIYgFwhgF0wBwqgegIDc4BzJAOjIEtMYBXAI0poHsDp5kTykBaADZ04JAKyUAVhDYA7EABoQAEySYUqUAwBOgtBmx5CBbUgDu1OoyYMIcbVDmY4szJUcICAYQDiASX4AMQAlAihtNjNlflg4CAh+VXUTOAAzCAJ4JGUM5BpZAgAmAAZCgBYARmKKgA5+YjZnCHcIYhAAXyUzGmV6NBri4qV4GjIsNAA2QaVMU1kIVLZtBDQAbVBu2WVItdA2HH0IswB9WQYEJntFECQIQ8jT88vtDoBdJTIIhhwmAE81kCYHSyY49a44QRIX72Y54OAMbYgd4gGTaTC7ECpGhwQTKfT5CDqVzXJbKK7oMnQFzKfJkN6dUBYwTOF4UtTnShHR4XewAAgAvPzeRUOgpGTRmeSVOyEJQgdoQT1eQAeYXFMRiQqi0CfNjfP4AiFQmFwhFsJFKJBkT58ZwY-b6RwMYmWu7oWRMY4INikO4MkAO9AIOBIeRKLE4vHoJBQKA6GP-V36JDEMjHGNx0xQf7+wMgYOh64R3H6HBsfKYO5J6Op2Hl1x+17+pks-RJDker0+uK8gB8QrEbyUyG0AGs0KBML8cHB9EwkC8lI5BEt9ABiJiVVIVVKikAuRw02R0zQgAAeE8x2JLNbTZYrVcB09n6AAjgxQ5g6GoaKRrl-MEEF8QAARQ-Vw6AAS95b1oVkWQ4F5MleXvBteRcT5QzISCIBQhdeUwPVtD9JR-lPYsoxAI1oW0WE7DNf9n30WQ2AQfIkD0JRUXRdB+AvGY6CA-QACk9XhF5OhAZdV3I69KM7b1fUYmd9HfT9vy-P8uKgDiX1ALhEGA7Q4ByPcAKE9AADlWKYYykMQwidFwyQ9RwjpJMcWQsRPUAkDPGg3VASFLkEQInAAZRoAAvF8qgEwC4DC1xIpitAKjKdpMqAA)
+
 ```json
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {
-    "url": "https://raw.githubusercontent.com/CGI-FR/crowd-chess-data/refs/heads/main/20241018-votes-effective.csv"
+    "url": "https://raw.githubusercontent.com/CGI-FR/crowd-chess-data/refs/heads/main/20241018-votes.csv"
   },
   "width": 800,
   "height": 600,
   "transform": [
+    {
+      "window": [
+        {
+          "op": "row_number",
+          "as": "row_number"
+        }
+      ],
+      "groupby": ["turn_id", "player_pseudo"],
+      "sort": [
+        {"field": "instant", "order": "descending"}
+      ]
+    },
+    {
+      "filter": "datum.row_number == 1"
+    },
     {
       "filter": "datum.turn_id < 10552"
     },
